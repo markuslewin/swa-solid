@@ -40,13 +40,14 @@ jobs:
           script: |
             const { owner, repo } = context.repo;
             const repository = await github.rest.repos.get({ owner, repo });
-            if (!repository.homepage) {
-              await github.rest.repos.update({
-                owner,
-                repo,
-                homepage: process.env.URL,
-              });
-            }
+            console.log({ repository });
+            // if (!repository.homepage) {
+            //   await github.rest.repos.update({
+            //     owner,
+            //     repo,
+            //     homepage: process.env.URL,
+            //   });
+            // }
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
